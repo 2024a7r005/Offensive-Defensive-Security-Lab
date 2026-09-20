@@ -79,7 +79,3 @@ After the scan is completed, open the scan result. Nessus displays the vulnerabi
 
 
 ---
-
-## Demo Video
-
-[Watch the Experiment 1 Demo](demo/demo-video-link.md)
