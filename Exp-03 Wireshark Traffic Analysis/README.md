@@ -1,90 +1,129 @@
-EXPERIMENT 3: BASIC NETWORK TRAFFIC ANALYSIS WITH WIRESHARK
+# Experiment 3: Basic Network Traffic Analysis with Wireshark
 
-OBJECTIVE
+---
 
-To capture and examine network packets using Wireshark and identify suspicious activity and cleartext credentials within a simulated network environment.
+## Objective
 
-PROCEDURE
+To capture and examine network packets using Wireshark to identify suspicious activity and cleartext credentials within a simulated network environment.
 
-1. Configure VM Network
+---
 
-Set both Kali Linux and Metasploitable network adapters to Host-Only / Internal Network.
+## Procedure
 
-Kali:
-ip a
+---
+
+### Step 1: Configure VM Network
+
+Set the network adapters of Kali Linux and Metasploitable to Host-Only / Internal Network.
+
+Kali Linux:
+`ip a`
 
 Metasploitable:
-ifconfig
+`ifconfig`
 
-2. Install Required Packages
+---
 
-sudo apt update
-sudo apt install nmap wireshark tcpdump tshark -y
+### Step 2: Install Required Packages
+
+Run the following command on Kali Linux:
+
+`sudo apt update && sudo apt install nmap wireshark tcpdump tshark -y`
 
 Launch Wireshark:
 
-sudo wireshark
+`sudo wireshark`
 
-EXECUTION STEPS
+---
 
-Step 1: Verify Connectivity
+### Step 3: Verify Connectivity
 
-ping -c 3 192.168.56.101
+Test connectivity from Kali Linux to the target machine:
 
-Step 2: Port and Service Scanning
+`ping -c 3 192.168.56.101`
 
-sudo nmap -sS -Pn 192.168.56.101
+---
 
-Step 3: Start Wireshark Capture
+### Step 4: Port and Service Scanning
 
-Open Wireshark and select the network interface connected to the Host-Only network. Click the blue shark fin icon to start packet capture.
+Perform a SYN scan to identify open ports and services:
 
-Step 4: Generate Lab Traffic
+`sudo nmap -sS -Pn 192.168.56.101`
+
+---
+
+### Step 5: Start Wireshark Packet Capture
+
+Open Wireshark and select the network interface connected to the Host-Only network.
+
+Click the blue shark fin icon to start packet capture before generating network traffic.
+
+---
+
+### Step 6: Generate Lab Traffic
+
+Generate unencrypted traffic while Wireshark is capturing.
 
 HTTP:
-curl http://192.168.56.101/
+
+`curl http://192.168.56.101/`
 
 FTP:
-ftp 192.168.56.101
 
-Username: msfadmin
-Password: msfadmin
+`ftp 192.168.56.101`
 
-Telnet:
-telnet 192.168.56.101
-
-Username: msfadmin
-Password: msfadmin
-
-Step 5: Filter and Analyze Traffic
-
-Target IP:
-ip.addr == 192.168.56.101
-
-FTP credentials:
-ftp.request.command == "USER" || ftp.request.command == "PASS"
+Username: `msfadmin`  
+Password: `msfadmin`
 
 Telnet:
-telnet
+
+`telnet 192.168.56.101`
+
+Username: `msfadmin`  
+Password: `msfadmin`
+
+---
+
+### Step 7: Filter and Analyze Traffic
+
+Target IP filter:
+
+`ip.addr == 192.168.56.101`
+
+FTP credential filter:
+
+`ftp.request.command == "USER" || ftp.request.command == "PASS"`
+
+Telnet filter:
+
+`telnet`
 
 Right-click a packet → Follow → TCP Stream
 
-HTTP:
-http
+HTTP filter:
 
-HTTP authentication:
-http.authorization
+`http`
 
-Step 6: Save Capture and Export Evidence
+HTTP authentication filter:
 
-Stop the capture and select File → Save As.
+`http.authorization`
 
-Save as:
-lab_capture.pcap
+---
+
+### Step 8: Save Capture and Export Evidence
+
+Stop the packet capture.
+
+Select File → Save As and save the capture as:
+
+`lab_capture.pcap`
 
 To export HTTP objects:
+
 File → Export Objects → HTTP
 
-RESULT
+---
+
+## Result
 
 Network traffic was successfully captured and analyzed using Wireshark. HTTP, FTP, and Telnet traffic were examined to demonstrate how unencrypted protocols can expose sensitive information such as usernames and passwords.
