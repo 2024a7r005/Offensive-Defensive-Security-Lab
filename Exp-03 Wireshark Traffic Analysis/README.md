@@ -1,12 +1,12 @@
 Experiment 3: Basic Network Traffic Analysis with Wireshark  
 
 Objective: Capture and examine network packets to detect suspicious activity and cleartext credentials within a simulated network environment.  
+
 Procedure:
 1.Set VM network adapters to Host-Only / Internal mode.
 2.Identify VM IP addresses (ip a on Kali; ifconfig on Metasploitable).
 3.Ensure required packages are installed:
            **sudo apt update && sudo apt install nmap wireshark tcpdump tshark -y**
-
 4.Launch Wireshark with capture privileges: **sudo wireshark**
 
 Execution Steps -
