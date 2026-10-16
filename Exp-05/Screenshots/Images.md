@@ -6,6 +6,7 @@ The initial terminal capture records successful ping replies from the target and
 
 Step 2 Turn on forwarding
 IP forwarding was enabled on Kali so it could pass packets along while observing the traffic. The separate screenshot records the enabled setting.
+
 <img width="549" height="152" alt="image" src="https://github.com/user-attachments/assets/12494811-491e-4492-99a0-826908c9a7c5" />
 
 
