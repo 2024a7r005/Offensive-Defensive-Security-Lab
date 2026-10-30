@@ -1,1 +1,37 @@
+# Using OSINT Tools for Reconnaissance
 
+## Overview
+This experiment demonstrates passive footprinting using Open-Source Intelligence (OSINT) tools such as Google Dorks and Shodan. It focuses on gathering publicly available information about a target without directly interacting with or accessing its systems.
+
+## Aim
+To perform passive reconnaissance and collect publicly available target information using OSINT tools.
+
+## Objectives
+- Understand the fundamentals of OSINT.
+- Explore Google Dorks for discovering publicly indexed information.
+- Use Shodan to identify publicly exposed devices and services.
+- Understand potential information exposure risks.
+
+## Tools Used
+1. **Google Dorks** – To discover publicly indexed information using advanced search operators.
+2. **Shodan** – To explore internet-connected devices, open ports, and detected services.
+
+## Procedure
+1. Selected an authorized target for reconnaissance.
+2. Used Google search operators such as `site:example.com filetype:pdf`.
+3. Observed publicly indexed information related to the target.
+4. Opened Shodan and searched for the authorized target's domain or IP address.
+5. Examined available details such as open ports and detected services.
+6. Recorded observations and identified possible information exposure risks.
+
+## Key Learnings
+- Understanding passive reconnaissance techniques.
+- Learning how Google Dorks help discover indexed information.
+- Exploring Shodan for internet-facing asset information.
+- Understanding the importance of reducing publicly exposed information.
+
+## Result
+Successfully explored passive footprinting techniques using Google Dorks and Shodan and understood how OSINT can help identify publicly available information.
+
+## Disclaimer
+This experiment is intended for educational purposes only. Reconnaissance should be performed only on authorized targets and publicly available information.
