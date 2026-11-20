@@ -1,58 +1,36 @@
-# Password Guessing with Hydra
+# Experiment 9: Password Guessing with Hydra
+
+**Target:** Metasploitable 2 (`192.168.1.100`)  
+**Attacker:** Kali Linux
 
 ## Aim
-To understand brute-force attacks by using Hydra to test simple passwords on an SSH or FTP service in a controlled lab environment.
 
-## Tools Used
-- Kali Linux
-- THC Hydra
-- SSH or FTP Service
-- Password Wordlist
+Use Hydra in an authorized virtual lab to see how a small password list can expose a weak FTP password.
 
-## Introduction
-Hydra is a password-testing tool used to identify weak login credentials. It attempts multiple username and password combinations against services such as SSH and FTP using a wordlist.
+## Method
 
-## Procedure
+1. I scanned the Metasploitable 2 host with Nmap to check which services were available. The scan showed FTP on port 21, along with other open services.
 
-1. Open the Kali Linux terminal.
-2. Check the system's IP address using:
-   ```bash
-   ip a
-   ```
-3. Verify that Hydra is installed:
-   ```bash
-   hydra -h
-   ```
-4. Create a sample password wordlist:
-   ```bash
-   nano passwords.txt
-   ```
-5. Add a few test passwords, save the file and exit.
-6. Identify the IP address of your authorized lab target and confirm that its SSH or FTP service is running.
-7. Run Hydra against the lab service. For SSH, use:
-   ```bash
-   hydra -l testuser -P passwords.txt ssh://TARGET_IP
-   ```
-8. For FTP, use:
-   ```bash
-   hydra -l testuser -P passwords.txt ftp://TARGET_IP
-   ```
-9. Observe the terminal output to check the login attempts and whether a matching password is found.
-10. Record the results and understand how weak passwords can make accounts vulnerable.
+   ![Figure 1: Nmap service scan of 192.168.1.100](01-nmap-scan.png)
 
-*Replace `TARGET_IP` and `testuser` with the details of your authorized lab machine and test account.*
+2. I made a short custom list named `passlist.txt` with four entries: `12345`, `password`, `msfadmin`, and `admin`.
+
+   ![Figure 2: Creating and checking the custom password list](02-custom-password-list.png)
+
+3. I ran Hydra against FTP using the `msfadmin` username and that list:
+
+   ```bash
+   hydra -l msfadmin -P ~/passlist.txt ftp://192.168.1.100
+   ```
+
+   ![Figure 3: Hydra finds a valid FTP password](03-hydra-ftp-success.png)
 
 ## Result
-Successfully explored password-guessing attacks using Hydra and understood how weak passwords can be identified.
 
-## Security Measures
-- Use strong and unique passwords.
-- Enable Multi-Factor Authentication (MFA).
-- Implement account lockout policies.
-- Restrict repeated login attempts.
-- Use SSH key-based authentication where possible.
+Hydra reported a valid FTP login: **`msfadmin : msfadmin`**. The successful match was found with the custom list. This shows why weak, reused passwords create risk.
 
 ## Conclusion
-This experiment demonstrated how Hydra tests login credentials and highlighted the importance of strong passwords and secure authentication practices.
 
-**Note:** Perform password testing only on systems for which you have permission.
+The lab demonstrated password guessing against FTP on the isolated Metasploitable 2 VM. Only the completed FTP result is reported here; the instructor asked us to leave Telnet out of the experiment report.
+
+
